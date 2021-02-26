@@ -30,4 +30,37 @@ app.get("/videos", (req, res) => {
 	);
 });
 
+app.get("/search-videos/:query", (req, res) => {
+	client.request(
+		{
+			method: "GET",
+			path: `/me/videos?query=${req.params.query}`,
+		},
+		(error, body) => {
+			if (error) {
+				console.log(error);
+			}
+
+			res.send(body.data);
+		}
+	);
+});
+
+app.get("/video/:id", (req, res) => {
+	client.request(
+		{
+			method: "GET",
+			path: `/me/videos/${req.params.id}`,
+		},
+		(error, body) => {
+			if (error) {
+				console.log(error);
+			}
+
+			console.log(body);
+			res.send(body.data);
+		}
+	);
+});
+
 app.listen(PORT, () => console.log(`Listening on port ${PORT}.`));
