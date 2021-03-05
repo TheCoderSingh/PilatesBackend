@@ -14,21 +14,21 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 
-app.get("/videos", (req, res) => {
-	client.request(
-		{
-			method: "GET",
-			path: "/me/videos?per_page=100",
-		},
-		(error, body, status_code, headers) => {
-			if (error) {
-				console.log(error);
-			}
+// app.get("/videos", (req, res) => {
+// 	client.request(
+// 		{
+// 			method: "GET",
+// 			path: "/me/videos?per_page=100",
+// 		},
+// 		(error, body, status_code, headers) => {
+// 			if (error) {
+// 				console.log(error);
+// 			}
 
-			res.send(body.data);
-		}
-	);
-});
+// 			res.send(body.data);
+// 		}
+// 	);
+// });
 
 app.get("/search-videos/:query", (req, res) => {
 	client.request(
@@ -57,8 +57,8 @@ app.get("/video/:id", (req, res) => {
 				console.log(error);
 			}
 
-			console.log(body);
-			res.send(body.data);
+			// let x = body.data.json();
+			res.send(body);
 		}
 	);
 });
